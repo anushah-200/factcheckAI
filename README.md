@@ -1,4 +1,4 @@
-# Evaluating suitability of different generative AI models as fact-checking tools
+# factcheckAI
 
 ## Team Members
 -Anushah Gupta
