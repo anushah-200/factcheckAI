@@ -1,1 +1,11 @@
-
+pandas
+numpy
+scikit-learn
+sentence-transformers
+datasets
+transformers
+spacy
+matplotlib
+streamlit
+openai
+google-generativeai
