@@ -1,19 +1,19 @@
 # Evaluating suitability of different generative AI models as fact-checking tools
 
-## Team members
-1.Anushah Gupta
-2.Charvi Bajaj
+## Team Members
+-Anushah Gupta
+-Charvi Bajaj
 
-## project overview
+## Project Overview
 This project evaluates multiple generative AI models on fact-checking tasks and develops a machine learning model to predict hallucinated responses.
 
-## technologies
-Python
-Google colab
-Streamlit
-Scikit-learn
-Sentence transformers
-Hugging face datasets
+## Technologies
+-Python
+-Google colab
+-Streamlit
+-Scikit-learn
+-Sentence transformers
+-Hugging face datasets
 
-## repository structure
+## Repository Structure
 (To be updated)
