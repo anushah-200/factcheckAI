@@ -1,13 +1,13 @@
 # factcheckAI
 
-## Team Members
+## Team Members:
 -Anushah Gupta
 -Charvi Bajaj
 
 ## Project Overview
 This project evaluates multiple generative AI models on fact-checking tasks and develops a machine learning model to predict hallucinated responses.
 
-## Technologies
+## Technologies:
 -Python
 -Google colab
 -Streamlit
