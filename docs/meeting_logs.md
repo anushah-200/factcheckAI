@@ -158,3 +158,58 @@ Major notebook milestones and structural changes will be committed individually 
 - Verify checkpoint recovery.
 - Validate generated outputs.
 - Prepare equivalent notebooks for Groq and DeepSeek.
+
+# Phase 5 – OpenAI Response Generation Pipeline
+
+## Objectives
+
+- Configure the OpenAI API for automated response generation.
+- Develop a robust response generation pipeline.
+- Implement checkpointing and resume capability.
+- Generate benchmark responses for the TruthfulQA dataset.
+
+## Tasks Completed
+
+- ### Configured the OpenAI API
+  - Verified API authentication.
+  - Successfully tested the API with sample queries.
+
+- ### Created the OpenAI response generation notebook
+  - Developed **02_generate_openai.ipynb**.
+  - Installed all required Python libraries.
+
+- ### Loaded the benchmark dataset
+  - Imported the processed TruthfulQA dataset.
+  - Verified dataset structure and required columns.
+
+- ### Standardized prompting
+  - Designed a unified prompt template.
+  - Ensured identical prompting strategy for all evaluated models.
+
+- ### Implemented the response generation pipeline
+  - Created the **ask_openai()** wrapper function.
+  - Added **safe_openai()** with retry logic.
+  - Configured deterministic generation settings.
+
+- ### Added fault tolerance
+  - Implemented automatic checkpoint saving.
+  - Added resume capability for interrupted executions.
+  - Configured incremental saving of generated responses.
+
+- ### Validated the pipeline
+  - Generated responses for a small subset of questions.
+  - Verified output formatting before full-scale execution.
+
+## Decisions
+
+- Use **GPT-4.1-mini** as the OpenAI benchmark model.
+- Save responses in **long-format CSV** for downstream evaluation.
+- Maintain identical prompting and generation parameters across all models.
+- Save progress after every successful API call to prevent data loss.
+
+## Next Steps
+
+- Generate responses for the complete TruthfulQA dataset.
+- Implement equivalent pipelines for Groq and DeepSeek.
+- Merge responses from all three models.
+- Begin automatic response evaluation and feature extraction.
