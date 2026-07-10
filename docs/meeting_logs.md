@@ -215,7 +215,7 @@ Major notebook milestones and structural changes will be committed individually 
 - Begin automatic response evaluation and feature extraction.
 
 
-# Phase 5 – Multi-Model Response Generation
+# Phase 6 – Multi-Model Response Generation
 
 ## Objectives
 
