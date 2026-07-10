@@ -213,3 +213,62 @@ Major notebook milestones and structural changes will be committed individually 
 - Implement equivalent pipelines for Groq and DeepSeek.
 - Merge responses from all three models.
 - Begin automatic response evaluation and feature extraction.
+
+
+# Phase 5 – Multi-Model Response Generation
+
+## Objectives
+
+- Generate benchmark responses from all selected LLMs.
+- Ensure consistent prompting across OpenAI, Groq, and DeepSeek.
+- Validate response quality and completeness.
+- Prepare response datasets for automatic evaluation.
+
+---
+
+## Tasks Completed
+
+- ### OpenAI Response Generation
+  - Generated responses using **GPT-4.1-mini**.
+  - Verified checkpointing and resume functionality.
+  - Saved responses to **openai_responses.csv**.
+
+- ### Groq Response Generation
+  - Created **03_generate_groq.ipynb**.
+  - Integrated **Llama-3.3-70B-Versatile** through the Groq API.
+  - Implemented retry logic with rate-limit handling.
+  - Configured automatic checkpoint saving.
+  - Generated responses for the complete TruthfulQA dataset.
+  - Saved responses to **groq_responses.csv**.
+
+- ### DeepSeek Response Generation
+  - Created **04_generate_deepseek.ipynb**.
+  - Integrated the DeepSeek Chat API.
+  - Implemented retry and checkpoint mechanisms.
+  - Resolved API initialization and client configuration issues.
+  - Identified incomplete response generation.
+  - Generated responses for the remaining unanswered questions.
+  - Saved the finalized responses to **deepseek_responses.csv**.
+
+- ### Pipeline Validation
+  - Verified consistent dataset schema across all generated response files.
+  - Confirmed standardized prompting for all three evaluated models.
+  - Ensured compatibility of generated datasets for downstream evaluation.
+
+---
+
+## Decisions
+
+- Maintain identical prompting strategy and generation parameters across all models to ensure a fair comparison.
+- Store responses from each model in separate CSV files before merging.
+- Use checkpointing and incremental saving to recover from API interruptions and long-running executions.
+- Generate only missing responses when resuming interrupted experiments instead of rerunning the complete dataset.
+
+---
+
+## Next Steps
+
+- Merge OpenAI, Groq, and DeepSeek response datasets.
+- Compute evaluation metrics including Semantic Similarity, BLEU, ROUGE, and BERTScore.
+- Construct the evaluation dataset for feature engineering.
+- Prepare the dataset for hallucination detection model training.
