@@ -337,3 +337,341 @@ Major notebook milestones and structural changes will be committed individually 
 - Perform train-validation-test splitting.
 - Train and compare multiple machine learning classifiers.
 - Evaluate classifier performance using standard classification metrics.
+
+# Phase 8 – Hallucination Labeling & Machine Learning Dataset Preparation
+
+## Objectives
+
+- Finalize hallucination labeling methodology.
+- Create a labeled dataset for hallucination detection.
+- Prepare data for machine learning experiments.
+- Perform initial preprocessing and feature preparation.
+
+---
+
+## Tasks Completed
+
+- ### Hallucination Label Analysis
+
+  - Analyzed evaluation metrics generated during the response evaluation phase.
+  - Studied relationships between similarity-based metrics and hallucination behavior.
+  - Identified high-confidence and uncertain responses for further analysis.
+  - Generated candidate hallucination samples for manual review.
+
+- ### Hallucination Label Generation
+
+  - Developed a labeling strategy based on:
+    - Evaluation metric patterns.
+    - Semantic similarity scores.
+    - Response comparison with ground truth.
+    - Manual verification of uncertain cases.
+
+  - Created binary hallucination labels:
+    - `0` → Non-hallucinated response.
+    - `1` → Hallucinated response.
+
+- ### Machine Learning Dataset Creation
+
+  - Created the final supervised learning dataset.
+  - Combined:
+    - Questions.
+    - Ground truth answers.
+    - Model-generated responses.
+    - Evaluation metrics.
+    - Engineered numerical features.
+    - Hallucination labels.
+
+  - Saved the finalized dataset as:
+    - `training_dataset.csv`
+
+- ### Dataset Exploration
+
+  - Verified dataset structure and dimensions.
+  - Checked missing values.
+  - Checked duplicate records.
+  - Analyzed hallucination class distribution.
+  - Confirmed the dataset contained both hallucinated and non-hallucinated examples.
+
+- ### Feature Preparation
+
+  - Prepared evaluation-based features for machine learning.
+  - Selected features including:
+    - Semantic Similarity
+    - BLEU
+    - ROUGE-1
+    - ROUGE-L
+    - BERTScore
+    - Response Length
+    - Ground Truth Length
+    - Question Length
+    - Length Difference
+    - Response Characters
+    - Average Word Length
+
+
+---
+
+## Decisions
+
+- Use supervised machine learning for hallucination detection.
+- Use evaluation metrics as model input features.
+- Preserve original text data for future error analysis.
+- Separate dataset preparation from model training for better reproducibility.
+
+
+---
+
+## Next Steps
+
+- Complete preprocessing pipeline.
+- Encode categorical variables.
+- Normalize numerical features.
+- Create training and testing datasets.
+- Train baseline classification models.
+
+
+---
+
+# Phase 9 – Machine Learning Dataset Preprocessing & Feature Engineering
+
+## Objectives
+
+- Prepare the final dataset for machine learning.
+- Perform feature encoding and scaling.
+- Create reproducible preprocessing pipeline.
+- Generate training and testing datasets.
+
+
+---
+
+## Tasks Completed
+
+- ### Dataset Loading and Validation
+
+  - Loaded the finalized `training_dataset.csv`.
+  - Verified:
+    - Dataset dimensions.
+    - Column names.
+    - Data types.
+    - Missing values.
+    - Duplicate records.
+
+- ### Feature Processing
+
+  - Removed raw text columns from the ML pipeline:
+    - Question
+    - Ground Truth
+    - Response
+
+  - Converted categorical features into numerical values.
+
+  Encoded features:
+  - Category
+  - Type
+  - Model
+
+- ### Encoder Creation
+
+  - Created reusable preprocessing objects:
+    - Category Encoder.
+    - Type Encoder.
+    - Model Encoder.
+
+  - Saved encoders as:
+
+    - `category_encoder.pkl`
+    - `type_encoder.pkl`
+    - `model_encoder.pkl`
+
+- ### Feature Scaling
+
+  - Applied StandardScaler normalization to numerical features.
+  - Saved the scaler object:
+
+    - `scaler.pkl`
+
+- ### Dataset Splitting
+
+  - Split dataset into training and testing sets.
+
+  Configuration:
+
+  - Training data: 80%
+  - Testing data: 20%
+  - Stratified splitting used to maintain class distribution.
+
+- ### Generated Machine Learning Files
+
+Created:
+
+- `X_train.csv`
+- `X_test.csv`
+- `y_train.csv`
+- `y_test.csv`
+
+Saved feature information:
+
+- `feature_names.pkl`
+
+
+---
+
+## Decisions
+
+- Use stratified train-test splitting to preserve hallucination class balance.
+- Save preprocessing objects for future model inference.
+- Maintain fixed feature ordering for reproducibility.
+- Use scaled numerical features for machine learning algorithms.
+
+
+---
+
+## Next Steps
+
+- Train multiple classification models.
+- Compare model performance.
+- Evaluate using classification metrics.
+- Perform feature importance analysis.
+
+
+---
+
+# Phase 10 – Machine Learning Model Training, Evaluation & Error Analysis
+
+## Objectives
+
+- Train machine learning classifiers for hallucination detection.
+- Compare multiple classification approaches.
+- Evaluate model performance.
+- Analyze prediction errors.
+
+
+---
+
+## Tasks Completed
+
+- ### Model Training
+
+Implemented and trained three machine learning classifiers:
+
+- Logistic Regression
+- Decision Tree Classifier
+- Random Forest Classifier
+
+
+- ### Model Evaluation
+
+Evaluated models using:
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- ROC-AUC score
+
+Generated:
+
+- Classification reports.
+- Confusion matrices.
+- ROC curve comparisons.
+
+
+- ### Model Comparison
+
+Created a performance comparison dataset containing:
+
+- Model name.
+- Accuracy.
+- Precision.
+- Recall.
+- F1-score.
+- ROC-AUC.
+
+Saved:
+
+- `model_comparison.csv`
+
+
+- ### Model Saving
+
+Saved trained models for future inference:
+
+- `logistic_regression.pkl`
+- `decision_tree.pkl`
+- `random_forest.pkl`
+
+
+- ### Feature Importance Analysis
+
+Performed feature importance analysis using Random Forest.
+
+Identified important features:
+
+- BERTScore
+- Semantic Similarity
+- ROUGE-1
+- ROUGE-L
+- BLEU
+
+Saved:
+
+- `feature_importance.csv`
+- `feature_importance.png`
+
+
+- ### Performance Visualization
+
+Generated visualizations:
+
+- Accuracy comparison.
+- Precision comparison.
+- Recall comparison.
+- ROC curve comparison.
+- Feature importance visualization.
+
+Saved:
+
+- `accuracy_comparison.png`
+
+
+- ### Prediction Error Analysis
+
+Performed detailed prediction analysis.
+
+Generated:
+
+- Prediction results for individual models.
+- Error analysis dataset.
+- False positive samples.
+- False negative samples.
+
+Created:
+
+- `logistic_predictions.csv`
+- `decision_tree_predictions.csv`
+- `random_forest_predictions.csv`
+- `error_analysis.csv`
+- `false_positive_analysis.csv`
+- `false_negative_analysis.csv`
+
+
+---
+
+## Decisions
+
+- Compare multiple machine learning algorithms instead of using a single classifier.
+- Evaluate models using multiple metrics rather than accuracy alone.
+- Perform error analysis to understand model limitations.
+- Analyze feature importance to understand model decision-making.
+- Save trained models for future deployment and testing.
+
+
+---
+
+## Next Steps
+
+- Investigate false positive and false negative cases.
+- Analyze possible feature leakage.
+- Improve model generalization.
+- Perform additional validation experiments.
+- Prepare final hallucination detection pipeline.
