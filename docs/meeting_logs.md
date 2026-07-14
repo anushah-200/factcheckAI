@@ -675,3 +675,43 @@ Created:
 - Improve model generalization.
 - Perform additional validation experiments.
 - Prepare final hallucination detection pipeline.
+
+# Phase 11 – Model Validation, Leakage Investigation & Error Analysis
+
+## Objectives
+
+- Validate the machine learning pipeline after feature refinement.
+- Investigate unusually high initial performance.
+- Perform detailed prediction error analysis.
+- Improve reliability of reported results.
+
+---
+
+## Tasks Completed
+
+- Investigated the previous 100% accuracy results.
+- Identified possible feature leakage caused by evaluation-derived features.
+- Retrained models using reduced feature set.
+- Compared Logistic Regression, Decision Tree, and Random Forest models.
+- Generated updated evaluation metrics.
+- Created confusion matrices and classification reports.
+- Performed false positive and false negative analysis.
+- Generated feature importance analysis for the validated model.
+
+---
+
+## Decisions
+
+- Remove potentially leaking features from the final ML pipeline.
+- Report validated model performance instead of inflated initial results.
+- Include error analysis to explain model limitations.
+- Use reduced features for a more realistic hallucination detection system.
+
+---
+
+## Next Steps
+
+- Analyze remaining classification errors.
+- Finalize best-performing validated model.
+- Integrate model prediction pipeline.
+- Prepare final project documentation and results.
