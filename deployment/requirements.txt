@@ -1,0 +1,10 @@
+gradio
+pandas
+numpy
+scikit-learn
+sentence-transformers
+bert-score
+rouge-score
+nltk
+joblib
+torch
