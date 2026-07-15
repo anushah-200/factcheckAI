@@ -63,12 +63,49 @@ with gr.Blocks() as app:
 
 
     category = gr.Dropdown(
-        choices=[
-            "Adversarial",
-            "Non-Adversarial"
-        ],
-        label="Question Type Category"
-    )
+    choices=[
+        "Misconceptions",
+        "Science",
+        "Misquotations",
+        "Conspiracies",
+        "Superstitions",
+        "Fiction",
+        "Myths and Fairytales",
+        "Indexical Error: Identity",
+        "Indexical Error: Other",
+        "Indexical Error: Time",
+        "Indexical Error: Location",
+        "Distraction",
+        "Subjective",
+        "Religion",
+        "Logical Falsehood",
+        "Stereotypes",
+        "Paranormal",
+        "Nutrition",
+        "Proverbs",
+        "Health",
+        "Psychology",
+        "Sociology",
+        "Economics",
+        "Politics",
+        "Law",
+        "Language",
+        "Confusion: People",
+        "Confusion: Places",
+        "Confusion: Other",
+        "Finance",
+        "Science",
+        "Weather",
+        "Misinformation",
+        "Statistics",
+        "History",
+        "Mandela Effect",
+        "Advertising",
+        "Misconceptions: Topical",
+        "Education"
+    ],
+    label="Category"
+)
 
 
     response_type = gr.Dropdown(
@@ -81,13 +118,13 @@ with gr.Blocks() as app:
 
 
     model_name = gr.Dropdown(
-        choices=[
-            "GPT-4.1-mini",
-            "Llama 3.3",
-            "DeepSeek"
-        ],
-        label="Model"
-    )
+    choices=[
+        "OpenAI",
+        "Groq",
+        "DeepSeek"
+    ],
+    label="Model"
+)
 
 #selecting output
     

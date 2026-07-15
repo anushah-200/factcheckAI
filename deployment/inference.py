@@ -93,17 +93,21 @@ def predict_hallucination(
         feature_names
     ]
 
-    df_scaled = scaler.transform(
-        df
+    df_scaled = scaler.transform(df)
+
+    df_scaled = pd.DataFrame(
+    df_scaled,
+    columns=feature_names
     )
 
+
     prediction = classifier.predict(
-        df_scaled
+    df_scaled
     )[0]
 
 
     probability = classifier.predict_proba(
-        df_scaled
+    df_scaled
     )[0]
 
 
@@ -123,3 +127,5 @@ def predict_hallucination(
 
 
     return result, round(confidence*100,2)
+
+
