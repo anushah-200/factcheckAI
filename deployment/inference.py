@@ -1,45 +1,125 @@
-import os
-import joblib
 import pandas as pd
-import numpy as np
+import joblib
 
-MODEL_DIR = os.path.join(os.path.dirname(__file__), 'model')
+from feature_extraction import extract_features
 
-#Loading saved preprocessors and Random Forest model
-print("Loading saved pipeline artifacts...")
-rf_model = joblib.load(os.path.join(MODEL_DIR, 'random_forest.pkl'))
-scaler = joblib.load(os.path.join(MODEL_DIR, 'scaler.pkl'))
-category_encoder = joblib.load(os.path.join(MODEL_DIR, 'category_encoder.pkl'))
-model_encoder = joblib.load(os.path.join(MODEL_DIR, 'model_encoder.pkl'))
-type_encoder = joblib.load(os.path.join(MODEL_DIR, 'type_encoder.pkl'))
 
-#column order alignment matching training phase
-FEATURE_ORDER = ['Category', 'Type', 'Model', 'ResponseLength', 'QuestionLength', 'ResponseCharacters', 'AverageWordLength']
+MODEL_PATH = "model/random_forest.pkl"
+SCALER_PATH = "model/scaler.pkl"
 
-def encode_value(val, encoder):
-    """Safely encodes strings. Falls back to index 0 if value is unseen."""
-    try:
-        if val in encoder.classes_:
-            return int(encoder.transform([val])[0])
-        else:
-            return 0
-    except Exception:
-        return 0
+CATEGORY_ENCODER_PATH = "model/category_encoder.pkl"
+TYPE_ENCODER_PATH = "model/type_encoder.pkl"
+MODEL_ENCODER_PATH = "model/model_encoder.pkl"
 
-def predict_hallucination(feature_dict):
+FEATURE_NAMES_PATH = "model/feature_names.pkl"
 
-    encoded = feature_dict.copy()
-    encoded['Category'] = encode_value(feature_dict['Category'], category_encoder)
-    encoded['Type'] = encode_value(feature_dict['Type'], type_encoder)
-    encoded['Model'] = encode_value(feature_dict['Model'], model_encoder)
-    
-    df = pd.DataFrame([encoded])[FEATURE_ORDER]
-    
-    scaled_features = scaler.transform(df)
-    
-    prediction = rf_model.predict(scaled_features)[0]
-    probabilities = rf_model.predict_proba(scaled_features)[0]
-    
-    hallucination_prob = probabilities[1]
-    
-    return int(prediction), float(hallucination_prob)
+
+classifier = joblib.load(
+    MODEL_PATH
+)
+
+scaler = joblib.load(
+    SCALER_PATH
+)
+
+category_encoder = joblib.load(
+    CATEGORY_ENCODER_PATH
+)
+
+type_encoder = joblib.load(
+    TYPE_ENCODER_PATH
+)
+
+model_encoder = joblib.load(
+    MODEL_ENCODER_PATH
+)
+
+
+# Loading the feature order
+
+feature_names = joblib.load(
+    FEATURE_NAMES_PATH
+)
+
+#prediction function
+def predict_hallucination(
+        question,
+        response,
+        category,
+        response_type,
+        model_name
+):
+
+
+#extarcting features
+
+    features = extract_features(
+
+        question=question,
+
+        response=response,
+
+        category=category,
+
+        response_type=response_type,
+
+        model_name=model_name
+
+    )
+
+
+    df = pd.DataFrame(
+        [features]
+    )
+
+#encoding categorical features
+
+    df["Category"] = category_encoder.transform(
+        df["Category"]
+    )
+
+
+    df["Type"] = type_encoder.transform(
+        df["Type"]
+    )
+
+
+    df["Model"] = model_encoder.transform(
+        df["Model"]
+    )
+
+    #arranging features in the same order as in the training stage
+    df = df[
+        feature_names
+    ]
+
+    df_scaled = scaler.transform(
+        df
+    )
+
+    prediction = classifier.predict(
+        df_scaled
+    )[0]
+
+
+    probability = classifier.predict_proba(
+        df_scaled
+    )[0]
+
+
+
+    confidence = max(probability)
+
+#converting the output
+
+    if prediction == 1:
+
+        result = "Hallucinated"
+
+    else:
+
+        result = "Non-Hallucinated"
+
+
+
+    return result, round(confidence*100,2)
