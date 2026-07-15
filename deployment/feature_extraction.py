@@ -2,11 +2,12 @@ import numpy as np
 
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+
 from rouge_score import rouge_scorer
 from bert_score import score
 from nltk.translate.bleu_score import sentence_bleu
 
-# Loading models 
+# Load models once
 embedding_model = SentenceTransformer(
     "sentence-transformers/all-MiniLM-L6-v2"
 )
@@ -15,8 +16,6 @@ rouge = rouge_scorer.RougeScorer(
     ["rouge1", "rougeL"],
     use_stemmer=True
 )
-
-#functions for features
 
 def semantic_similarity(reference, prediction):
 
@@ -103,8 +102,6 @@ def average_word_length(response):
     return len(response) / len(words)
 
 
-#feature extraction function
-
 def extract_features(question, ground_truth, response):
 
     similarity = semantic_similarity(
@@ -143,6 +140,7 @@ def extract_features(question, ground_truth, response):
     avg_word_len = average_word_length(response)
 
     return {
+
         "SemanticSimilarity": similarity,
 
         "BLEU": bleu,
@@ -163,6 +161,8 @@ def extract_features(question, ground_truth, response):
 
         "ResponseCharacters": resp_chars,
 
-        "AverageWordLength": avg_word_len}
+        "AverageWordLength": avg_word_len
+
+    }
 
 
