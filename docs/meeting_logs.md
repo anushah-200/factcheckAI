@@ -715,3 +715,311 @@ Created:
 - Finalize best-performing validated model.
 - Integrate model prediction pipeline.
 - Prepare final project documentation and results.
+
+# Phase 12 – Model Deployment, Validation & GitHub Integration
+
+## Objectives
+
+- Validate the final hallucination detection model for deployment.
+- Deploy the trained Random Forest model using a local Gradio application.
+- Build and test the complete inference pipeline.
+- Resolve deployment and environment compatibility issues.
+- Synchronize deployment updates with GitHub.
+- Prepare the project for future cloud deployment.
+
+---
+
+## Tasks Completed
+
+- ### Model Validation
+
+Validated the final machine learning pipeline after feature refinement.
+
+Completed:
+
+- Investigated unusually high initial model performance.
+- Confirmed possible feature leakage from evaluation-derived features.
+- Retrained models using the reduced feature set.
+- Selected the validated Random Forest model for deployment.
+- Used validated performance metrics instead of inflated results.
+
+---
+
+- ### Environment Compatibility Investigation
+
+Investigated deployment issues related to loading trained models.
+
+Identified:
+
+- Random Forest model loading failure.
+- `KeyError: 13` while loading `random_forest.pkl`.
+
+Compared training and deployment environments.
+
+Training Environment:
+
+- scikit-learn 1.6.1
+- joblib 1.5.3
+
+Deployment Environment:
+
+- scikit-learn 1.9.0
+- joblib 1.5.3
+
+Resolved by:
+
+- Downgrading scikit-learn to version 1.6.1.
+- Matching deployment libraries with the training environment.
+
+Verified successful loading of:
+
+- `random_forest.pkl`
+- `scaler.pkl`
+- `category_encoder.pkl`
+- `type_encoder.pkl`
+- `model_encoder.pkl`
+- `feature_names.pkl`
+
+Performed SHA-256 hash verification to confirm model integrity.
+
+---
+
+- ### Inference Pipeline Development
+
+Implemented the complete deployment inference pipeline.
+
+Pipeline includes:
+
+- User input processing.
+- Feature extraction.
+- Categorical encoding.
+- Feature scaling.
+- Random Forest prediction.
+- Confidence score generation.
+
+Successfully tested predictions using sample inputs.
+
+---
+
+- ### Deployment Debugging
+
+Resolved deployment-related issues including:
+
+- scikit-learn version incompatibility.
+- Encoder label mismatch.
+- Incorrect dropdown values in the Gradio interface.
+- Import error caused by misplaced print statements in `inference.py`.
+
+Updated the application to match the exact preprocessing pipeline used during training.
+
+---
+
+- ### Gradio Application Deployment
+
+Developed a local deployment interface using Gradio.
+
+Integrated:
+
+- Trained Random Forest model.
+- Feature extraction module.
+- Encoders.
+- Scaler.
+- Prediction pipeline.
+
+Successfully launched the application locally.
+
+Accessible through:
+
+- `http://127.0.0.1:7860`
+
+---
+
+- ### Deployment Testing
+
+Performed complete deployment validation.
+
+Verified:
+
+- Model loading.
+- Prediction generation.
+- Confidence score calculation.
+- End-to-end inference pipeline.
+- Local browser testing.
+
+Confirmed successful hallucination prediction through the deployed application.
+
+---
+
+- ### GitHub Synchronization
+
+Updated the project repository with deployment components.
+
+Uploaded:
+
+- Updated `app.py`
+- Updated `inference.py`
+- Corrected `random_forest.pkl`
+- Deployment test scripts
+- Supporting preprocessing objects
+
+Successfully pushed all deployment updates to GitHub for collaboration.
+
+---
+
+## Decisions
+
+- Use the validated Random Forest model for deployment.
+- Match training and deployment environments to ensure model compatibility.
+- Preserve the complete preprocessing pipeline during inference.
+- Keep deployment testing scripts for reproducibility and debugging.
+- Maintain GitHub as the primary version control and collaboration platform.
+
+---
+
+## Next Steps
+
+- Create a `requirements.txt` file with fixed package versions.
+- Deploy the application online using Hugging Face Spaces, Render, or Railway.
+- Perform additional validation using unseen datasets.
+- Improve prediction explainability and user interface.
+- Finalize deployment documentation.
+- Prepare the complete FactCheck AI system for final project submission.
+
+# Phase 13 – Final Testing, Documentation & Project Submission
+
+## Objectives
+
+- Perform final end-to-end system testing.
+- Verify the complete hallucination detection pipeline.
+- Organize the project repository for submission.
+- Finalize project documentation and deployment files.
+- Prepare the project for demonstration and submission.
+
+---
+
+## Tasks Completed
+
+- ### End-to-End System Testing
+
+Performed complete testing of the FactCheck AI system.
+
+Verified:
+
+- Data preprocessing pipeline.
+- Feature extraction pipeline.
+- Model loading.
+- Preprocessing objects (encoders and scaler).
+- Inference pipeline.
+- Random Forest prediction.
+- Confidence score generation.
+- Gradio web application functionality.
+
+Confirmed that the system successfully generated hallucination predictions for sample inputs.
+
+---
+
+- ### Deployment Verification
+
+Validated the deployment environment.
+
+Confirmed:
+
+- All required model files loaded successfully.
+- Feature ordering matched the training pipeline.
+- Encoders correctly transformed categorical inputs.
+- Scaled features were passed correctly to the trained model.
+- Predictions were generated without runtime errors.
+
+---
+
+- ### Project Documentation
+
+Updated the project documentation.
+
+Completed:
+
+- Reviewed all project phases.
+- Updated the README with:
+  - Project overview.
+  - Installation instructions.
+  - Project structure.
+  - Usage instructions.
+  - Model description.
+  - Deployment workflow.
+
+Documented the complete machine learning pipeline from dataset preparation to deployment.
+
+---
+
+- ### Repository Organization
+
+Organized the project repository.
+
+Verified the availability of:
+
+- Source code.
+- Jupyter notebooks.
+- Deployment scripts.
+- Trained models.
+- Preprocessing objects.
+- Generated datasets.
+- Evaluation results.
+- Visualization outputs.
+- Test scripts.
+- Documentation files.
+
+Removed unnecessary temporary files and ensured a clean project structure.
+
+---
+
+- ### Final Validation
+
+Performed final verification of project outputs.
+
+Confirmed availability of:
+
+- Processed dataset.
+- Generated model responses.
+- Evaluation dataset.
+- Training dataset.
+- Saved preprocessing objects.
+- Trained machine learning models.
+- Performance comparison results.
+- Feature importance analysis.
+- Error analysis datasets.
+- Deployment application.
+
+Verified that all generated files were correctly stored for future use.
+
+---
+
+- ### Submission Preparation
+
+Prepared the project for final submission.
+
+Completed:
+
+- Verified project directory structure.
+- Confirmed reproducibility of the deployment pipeline.
+- Ensured GitHub repository contained the latest project version.
+- Reviewed project deliverables before submission.
+
+---
+
+## Decisions
+
+- Use the validated Random Forest model as the final hallucination detection model.
+- Preserve all preprocessing objects for consistent inference.
+- Maintain the modular project structure for future development.
+- Keep deployment scripts and testing utilities for reproducibility.
+- Use GitHub as the final project repository for collaboration and submission.
+
+---
+
+## Next Steps
+
+- Submit the completed FactCheck AI project.
+- Demonstrate the Gradio application during project evaluation.
+- Explore deployment on cloud platforms such as Hugging Face Spaces or Render.
+- Investigate deep learning approaches for future improvements.
+- Extend the system to support additional large language models and benchmark datasets.
