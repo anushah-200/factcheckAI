@@ -287,7 +287,7 @@ factcheckAI/
 
 ---
 
-## 🔄 Reproducibility
+## Reproducibility
 
 The project is organized into the following stages:
 
@@ -315,30 +315,7 @@ The final classifier is deployed through a **Gradio** interface.
 
 ---
 
-##  Notebooks
-
-### `01_dataset_preparation.ipynb`
-
-Responsible for:
-
-* Loading the TruthfulQA dataset
-* Data preprocessing
-* Cleaning and filtering
-* Feature preparation
-* Dataset analysis
-
-### `02_generate_openai.ipynb`
-
-Responsible for:
-
-* Generating LLM responses
-* Running model evaluation
-* Collecting response-level data
-* Preparing data for downstream analysis
-
----
-
-## 🧠 Models Evaluated
+## Models Evaluated
 
 ### Large Language Models
 
@@ -358,7 +335,7 @@ Responsible for:
 
 ---
 
-## 🛠️ Technologies
+##  Technologies
 
 ### Programming
 
@@ -390,7 +367,7 @@ Responsible for:
 
 ---
 
-## 📦 Installation
+##  Installation
 
 Clone the repository:
 
