@@ -447,22 +447,6 @@ To reproduce the machine learning experiments:
 
 ---
 
-##  Project Resources
-
-### Research Report
-
-The complete methodology, experiments, analysis, limitations, and results are documented in the project report.
-
-### Interactive Demo
-
-The trained hallucination-prediction model is deployed using **Gradio**.
-
-### Source Code
-
-The complete project implementation, notebooks, preprocessing pipeline, models, and results are organized in this repository.
-
----
-
 ##  Research Contribution
 
 FactCheck AI explores whether relatively simple, measurable characteristics of questions and LLM-generated responses can provide useful signals for hallucination prediction.
